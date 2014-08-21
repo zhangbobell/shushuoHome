@@ -1,0 +1,23 @@
+.navbar{
+	background-color: #55ebd0; 
+}
+.main-title h1{
+	font-size: 30px;
+	margin-top: 140px;
+	margin-bottom: 40px;
+}
+.concept{
+	border-bottom: 2px dashed #bdc9de;
+}
+.concept h1{
+	font-size: 24px;
+	margin-top: 92px;
+	margin-bottom: 20px;
+}
+.concept p{
+	color: #626262;
+	font-size: 17px;
+}
+footer{
+	margin-top: 285px;
+}

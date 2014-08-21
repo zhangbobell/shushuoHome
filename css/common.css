@@ -1,0 +1,42 @@
+@font-face {
+	font-family: 'Lanting Pavilion Black';
+	src: url('../font/LantingPavilionBlack.ttf')  format('truetype')
+}
+body{
+	color: #172a72;
+	font-family: 'Lanting Pavilion Black','Hiragino Sans GB','Arial';
+	background: url('../images/striped.png') repeat;
+	background-size: 16px 16px;
+	overflow-x:hidden; 
+}
+.navbar{
+	background-size: cover;
+}
+.navbar-nav>li a{
+	height: 78px;
+	line-height: 78px;
+	padding: 0 20px;
+	color: white
+}
+.navbar-nav>li:hover{
+	background: none;42
+}
+.navbar-nav>li:hover a{
+	text-decoration: underline;
+	background: none;
+}
+
+.navbar-nav>li.active a{
+	background-color: #55ebd0;
+	color: white
+}
+footer{
+	background-color: #55ebd0;
+	text-align: center;
+	padding: 48px 0;
+}
+.page{
+	width: 100%;
+	padding-top: 84px;
+}
+

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>China Map</title>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        <script src="../dist/kity.min.js"></script>
+        <script src="../dist/kitychart.all.js"></script>
+        <script src="../libs/jquery-2.1.0.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    </head>
+    <style>
+    #china-map-chart{
+        padding: 20px 0 0 60px;
+    }
+    </style>
+    <body>
+        <div class="container">
+            <div id="china-map-chart"></div>
+<!--             <div id="ctrl">
+                <input id="range_min" type="range" min="0" max="1" value="0" step="0.05" />
+                <input id="range_max" type="range" min="0" max="1" value="1" step="0.05" />
+            </div> -->
+        </div>
+    </body>
+    <script>
+
+        (function(){
+            var h = document.body.clientHeight, w = document.body.clientWidth;
+            var map = new kc.ChinaMapChart('china-map-chart', {
+                width: 600,
+                height: h,
+                colors: ['#3e92c5','#68a8d0','#7bb2d6','#aacde2','#f5edeb','#f2e0dd','#ecc1b9','#e6a599','#de7c6a'],
+                defaultColor: 'lightgray'
+            });
+
+            var china_province = kc.Map.CHINA.blocks;
+            var data;
+            $.ajax({
+                url: '../data/map.json',
+                success: function( json ) {
+                    data = json;
+                    updateRange( data, 0, 1 );
+                }
+            });
+
+
+            function updateRange( data, min, max ) {
+                var ranged = {};
+                for(var p in data) {
+                    if (data[p].value > min && data[p].value < max) ranged[p] = data[p];
+                    else ranged[p] = {};
+                }
+
+                map.getData().update(ranged);
+            }
+
+
+            function legend(){
+                var colors = map.param.colors;
+
+                var container = $('<div></div>').css({
+                    padding : '0 30px 30px',
+                    display : 'inline-block'
+                }).appendTo($('#china-map-chart'));
+
+                var unit = 30;
+                var w = unit * colors.length;
+                var outer = $('<div></div>').css({
+                    width : w + 'px',
+                    height : '30px',
+                    position : 'relative'
+                }).appendTo(container);
+
+                colors.forEach(function( color, i ){
+                    $('<div></div>').css({
+                        width : '30px',
+                        height : '30px',
+                        background : color,
+                        float : 'left'
+                    }).attr('index', i).appendTo(outer);
+                });
+
+                var slider = $('<div></div>').css({
+                    width : w + 'px',
+                }).appendTo(container[0]);
+                
+                slider.slider({
+                    range: true,
+                    min: 0,
+                    max: w,
+                    values: [ 0, w ],
+                    slide: function( event, ui ) {
+                        var min = ui.values[ 0 ];
+                        var max = ui.values[ 1 ];
+
+                        var left = (min/unit)|0;
+                        var c;
+
+                        for(var i = 0; i < colors.length; i++){
+                            c = i < left ? map.param.defaultColor : colors[i];
+                            $(outer[0].children[i]).css('background-color', c);
+                        }
+
+                        var right = (max/unit)|0;
+
+                        for(i = left; i < colors.length; i++){
+                            c = i > right ? map.param.defaultColor : colors[i];
+                            $(outer[0].children[i]).css('background-color', c);
+                        }
+
+                        updateRange(data, min/w, max/w);
+                    }
+                });
+
+                slider.css({
+                    border : 'none'
+                }).find('.ui-slider-range').css({
+                    visibility : 'hidden'
+                });
+
+                
+            }
+
+            legend();
+
+        })();
+
+
+    </script>
+</html>

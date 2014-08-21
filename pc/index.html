@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>数说 - 用数据说话</title>
+
+    <link rel="icon" href="favicon.ico" mce_href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" mce_href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="./pc/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="./pc/css/fixed-positioning.css" />
+
+	<script src="./pc/js/jquery.min.js"></script>
+
+</head>
+<body>
+    <div id="mid-layer" data-0="background-position: 50% 0%;" data-end="background-position: 50% 30%"></div>
+    <div id="background-layer" data-0="background-position: 50% 0%;" data-end="background-position: 50% 12%"></div>
+    <ul id="nav">
+        <div id="nav-logo"></div>
+        <li>首&nbsp;&nbsp;&nbsp;&nbsp;页</li>
+        <li>关于我们</li>
+        <li>案&nbsp;&nbsp;&nbsp;&nbsp;例</li>
+        <li>联系我们</li>
+        <div id="cur-section"></div>
+    </ul>
+
+    <div id="first-section" data-0p="opacity[quadratic]: 1;" data-25p=" opacity: 0.2;">
+        <div id="logo-background"><div id="logo"></div></div>
+        <div id="slogan">专业数据可视化服务</div>
+        <div id="down-arrow"></div>
+    </div>
+
+    <div id="second-section">
+        <div id="sea" data-25p="opacity: 0.2;" data-50p="opacity: 1;">
+            <div id="intro1-hover"><h3>前沿</h3><div class="desc">我们时刻关注数据可视化最新进展，并不断挑战自我，突破创新。</div></div>
+            <div id="intro2-hover"><h3>设计理念</h3><div class="desc">一切从数据出发。 从理解数据开始，了解数据背后所要表达的故事，设计数据的展示效果。让数据讲出她自己的故事。</div></div>
+            <div id="intro3-hover"><h3>态度</h3><div class="desc">精益求精和注重细节是我们的宗旨。 每个图表对我们来说都是全新的。我们会从理解数据开始，设计数据展示的每个细节，大到实体对象的展现方式，小到细节颜色的选取，我们都力求做到精益求精。</div></div>
+            <div id="intro4-hover"><h3>优势</h3><div class="desc">众多百度大数据部门的成功案例。 我们已经与百度的多个产品线合作，成功上线了多个完全不同的定制化图表，并受到了每个产品线的一致好评。在合作的工程中，无论是对数据的理解上，还是效果的设计和展示上，都积累了丰富的经验。</div></div>
+            <div class="intro" id="intro1"></div>
+            <div class="intro" id="intro2"></div>
+            <div class="intro" id="intro3"></div>
+            <div class="intro" id="intro4"></div>
+        </div>
+    </div>
+
+    <div id="third-section">
+        <div class="section-title">案&nbsp;&nbsp;&nbsp;&nbsp;例</div>
+        <div class="prj-block">
+        </div>
+        <!--<div id="more">查看更多</div>-->
+    </div>
+
+    <div id="forth-section">
+        <div class="section-title">联系我们</div>
+        <div class="cnt-line">
+            <div class="cnt-wrap fix">
+                <div class="cnt email first-cnt">
+                    <div class="cnt-title">邮箱</div>
+                    <div class="cnt-detail"><a href="mailto:shushuo@baidu.com" onclick="javascript:;">shushuo@baidu.com</a></div>
+                </div>
+                <div class="cnt qq">
+                    <div class="cnt-title">QQ</div>
+                    <div class="cnt-detail">234589330</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer-wrap">
+                <div class="cooperate-title">合作伙伴：</div>
+                <ul class="friend-wrap fix">
+                        <li class="friend-link baidu-bim">BIM营销研究院</li>
+                        <li class="friend-link baidu-map">百度地图</li>
+                        <li class="friend-link baidu-tieba">百度贴吧</li>
+                        <li class="friend-link baidu-brand">品牌数字资产榜</li>
+                        <li class="friend-link baidu-yun">百度云</li>
+                        <li class="friend-link baidu-daiyan">百度代言</li>
+                    </ul>
+                <div class="copyright">&copy; 2014 Baidu. All rights reserved.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="scroll-sc" data-0="top:0px"></div>
+    <div id="skrollr-body"></div>
+
+
+    <script type="text/javascript" src="./pc/js/skrollr.min.js"></script>
+    <script type="text/javascript" src="./pc/js/jquery.mousewheel.min.js"></script>
+    <script type="text/javascript" src="./pc/js/jquery.transit.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="../skrollr-ie/dist/skrollr.ie.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        var s = skrollr.init({
+            edgeStrategy: 'set',
+            smoothScrolling: true,
+            easing: {
+                WTF: Math.random,
+                inverted: function(p) {
+                    return 1-p;
+                }
+
+            }
+        });
+
+        $(function(){
+
+
+            /****************************** 第三部分--案例DOM加载 *********************************/
+            /*
+            *
+            *  新增项目方法：
+            *  （1）在文档流中增加prj的标签id递增，class；
+            *  （2）这prj数组里增加对象，注意图片尺寸为244*280。
+            *
+            */
+            var prj = [
+                {
+                    backgroundImage: 'prj-13.png',
+                    mainTitle: '移动互联网发展趋势报告2014Q2',
+                    subTitle: '2014年第二季度移动互联网发展趋势报告。',
+                    href: 'mobileWeb-trend.php'
+                },
+                {
+                    backgroundImage: 'prj-1.png',
+                    mainTitle: '网站流量转化图',
+                    subTitle: '该图表表示的是一个网站的的流量转化情况。',
+                    href: 'theme-sun.php'
+                },
+                {
+                    backgroundImage: 'prj-2.png',
+                    mainTitle: '散点图示例',
+                    subTitle: '散点图常用于显示两组数据之间的相关性，可展示数据的分布情况。',
+                    href: 'detail-basescatter.php'
+                },
+                {
+                    backgroundImage: 'prj-3.png',
+                    mainTitle: '球员数据雷达图',
+                    subTitle: '用雷达图的方式表示一个球员的各项数据，直观且多球员之间的可比性强。',
+                    href: 'charts/radar/'
+                },
+                {
+                    backgroundImage: 'prj-4.png',
+                    mainTitle: '全国人口职业分布图',
+                    subTitle: '项目运用职业人口密度和区位商指标,分析了职业人口在省(市、区)和不同区域的分布现状。图为研究数据的可视化展示。',
+                    href: 'detail-chinamap.php'
+                },
+                {
+                    backgroundImage: 'prj-5.png',
+                    mainTitle: 'Coffee Guide',
+                    subTitle: '信息的展示不一定是严谨的图表，形象的图形也可以为信息的表达增色不少。信息图展现的是咖啡饮用指南。',
+                    href: 'theme-coffee.php'
+                },
+                {
+                    backgroundImage: 'prj-6.png',
+                    mainTitle: 'C罗2002-2013进球数趋势',
+                    subTitle: '图表展示的是C罗2002-2013进球数趋势，2014世界杯能否打破记录。',
+                    href: 'theme-ronaldo.php'
+                },
+                {
+                    backgroundImage: 'prj-7.png',
+                    mainTitle: '基础图表',
+                    subTitle: '饼图、柱状图、堆叠图。',
+                    href: 'theme-basiccharts.php'
+                },
+                {
+                    backgroundImage: 'prj-8.png',
+                    mainTitle: '人体的构成',
+                    subTitle: '这是堆叠图的一种形象化表达，展示的人体各个部分的构成比例。',
+                    href: 'theme-human.php'
+                },
+                {
+                    backgroundImage: 'prj-9.png',
+                    mainTitle: '大数据解读世界杯球迷众生相',
+                    subTitle: '百度大数据根据世界杯期间球迷搜索行为路径，深度解读球迷众生相，我们将有趣关键词集合在下方的动态数据网站中，让你看世界杯心中有数。',
+                    href: 'http://tieba.baidu.com/tb/zt/wcup/index.html'
+                },
+                {
+                    backgroundImage: 'prj-10.png',
+                    mainTitle: '世界杯大数据之球员表现',
+                    subTitle: '获取世界杯所有球员在小组赛阶段的表现数据，并结合百度贴吧球员热度，在平行坐标轴中其进行可视化对比。',
+                    href: 'http://tb1.bdstatic.com/tb/zt/html7.03/perfor.html'
+                },
+                {
+                    backgroundImage: 'prj-11.png',
+                    mainTitle: '行业开发罗盘',
+                    subTitle: '行业开发罗盘项目在于运用大数据分析发现新的行业商机。该散点图在二维平面中展现了四维信息。',
+                    href: 'detail-scatter.php'
+                },
+                {
+                    backgroundImage: 'prj-12.png',
+                    mainTitle: '手机品牌分布图',
+                    subTitle: '该可视化案例展现的是某应用小范围内手机品牌分布，案例的可视化部分采用的是矩阵树而非传统的饼图。',
+                    href: 'detail-treemap.php'
+                }
+            ];
+
+
+            var html = '',
+                idx = 0,
+                totalRows = Math.floor(prj.length / 7) * 2;
+
+            if (prj.length % 7 > 3)
+                totalRows += 2;
+            else if (prj.length % 7 !== 0)
+                totalRows += 1;
+
+
+            for(var i = 0; i < totalRows; i++)
+            {
+                html += '<ul class="prj-wrap-';
+
+                if (i % 2 === 0)
+                    html += 'odd';
+                else
+                    html += 'even';
+
+                if (i == 0)
+                    html +=' first-line';
+                html += ' fix">';
+
+                for(var j = 0; j < (i%2 === 0 ? 3 : 4); j++, idx++)
+                    if (idx < prj.length)
+                    {
+                        html += '<li class="prj ';
+                        if (idx > 13)
+                            html += 'appended';
+                        html += '" id="prj-' + idx + '" style="background:';
+
+                        if (navigator.userAgent.indexOf("Chrome") > 0 || navigator.userAgent.indexOf("Safari") > 0)  // Chrome 具有双重背景
+                            html += 'url(\'./pc/images/prj-border.png\'),';
+                        else
+                            html += ' border-box ';
+
+                        html += 'url(\'./pc/images/'+ prj[idx].backgroundImage +'\') no-repeat 0% 0%;">' +
+                                '<div class="prj-hover" id="prj-hover-'+ idx +'">' +
+                                '<div class="prj-main-title">' + prj[idx].mainTitle + '</div>' +
+                                '<div class="prj-sub-title">' + prj[idx].subTitle + '</div>' +
+                                '</div>' +
+                                '</li>';
+                    }
+                html += '</ul>';
+            }
+
+            $(html).appendTo('.prj-block');
+
+            /*
+            * 根据浏览器的不同，加载相应的 js 文件，用于处理 .prj 的鼠标 in 和 out 事件。
+            */
+            window.prj = prj;
+            if (navigator.userAgent.indexOf("Chrome") > 0 || navigator.userAgent.indexOf("Safari") > 0)
+                $('<script>').attr('src', './pc/js/ch-hover.js').attr('defer', 'defer').appendTo('head');
+            else
+            {
+                $('.prj-block').addClass('ff'); // 改变样式为圆形
+                $('<script>').attr('src', './pc/js/ff-hover.js').attr('defer', 'defer').appendTo('head');
+            }
+
+            /****************************** window 的 scroll事件和resize事件 *********************************/
+
+            var isInProcess = false,
+                section3num = 1, // 记录第三部分有几屏
+                scrollTimer;
+
+            /*
+             * 鼠标的scroll事件和键盘的keydown事件：实现滚屏，单个部分滚动时只响应一次
+             */
+            var scrollHandler = function(e, d) {
+
+                var direction = 0;  // -1：向下 1：向上
+                var sectionHeight = $(window).height();
+
+                if (isInProcess) return;
+                isInProcess = true;
+                clearTimeout(scrollTimer);
+
+                if (e.type == 'keydown') {
+                    if (e.keyCode === 37 || e.keyCode === 38) direction = 1;  // 向上
+                    else if(e.keyCode === 39 || e.keyCode === 40 || e.keyCode === 32) direction = -1;  // 向下
+                    else direction = 0;
+                } else {
+                    direction= e.deltaY;
+                }
+
+                s.animateTo(s.getScrollTop() - direction * $(window).height(), {
+                    duration: 800,
+                    easing: 'swing',
+                    done: function(){
+                        scrollTimer = setTimeout(function(){
+                            isInProcess = false;
+                        }, 0);
+
+                        var curSectionIndex = Math.ceil(s.getScrollTop()/sectionHeight-0.5);
+                        $('#cur-section').transition({
+                            top: 55 + curSectionIndex*32 + 'px'
+                        },{
+                            easing: 'ease'
+                        });
+                    }
+                });
+
+
+
+            };
+
+
+
+            /*
+
+             * 窗口的resize事件：调整每个部分的高度（不包括第三部分）
+             */
+            var resizeSectionHandler = function(){
+                var sectionHeight = $(window).height();
+
+//                $.each($('#scroll-sc')[0].dataset, function(idx, ele){
+//                    $('#scroll-sc').removeAttr('data-' + idx );
+//                });
+//
+//                $('#scroll-sc')
+//                        .attr('data-0', 'top[swing]: 55px')
+//                        .attr('data-' + 1 * sectionHeight, 'top: 87px')
+//                        .attr('data-' + 2 * sectionHeight, 'top: 119px')
+//                        .attr('data-' + ((1 + section3num) * sectionHeight-1), 'top: 119px')
+//                        .attr('data-' + (2 + section3num) * sectionHeight, 'top: 151px');
+//                s.refresh($('#scroll-sc'));
+
+                var attrs = $('#scroll-sc')[0].attributes, i;
+                for (i = 0; i < attrs.length;) {
+                    if(attrs[i].name.substring(0, 5) == 'data-') {
+                        $('#scroll-sc')[0].removeAttribute(attrs[i].name);
+                    }
+                    else {
+                        i++;
+                    }
+                }
+
+                $('#scroll-sc').attr('data-0', 'top:0px');
+                $('#scroll-sc').attr('data-' + ((2 + section3num) * sectionHeight), 'top:0px');
+                s.refresh($('#scroll-sc'));
+
+                $('#first-section, #second-section, #forth-section').height(sectionHeight);
+                $('#third-section').height(section3num * sectionHeight);
+
+                var curSectionIndex = Math.ceil(s.getScrollTop()/sectionHeight-0.5);
+                s.setScrollTop(curSectionIndex * sectionHeight);
+                $('#cur-section').transition({
+                    top: 55 + curSectionIndex*32 + 'px'
+                },{
+                    easing: 'ease'
+                });
+            };
+
+            /*
+             * Chrome 版本的 resize 事件
+             * 窗口的 resize 事件：调整第三部分的高度以及每个案例的大小
+             */
+            var resizeSection3Handler_ch = function(){
+                var sectionHeight = $(window).height(),
+                    sectionWidth = $(window).width(),
+                    ratio = Math.min(sectionHeight/1000, Math.min(sectionWidth, 976)/976);
+
+                var itemW = Math.floor(240 * ratio);
+                var itemH = Math.floor(280 * ratio);
+                $('.prj').width(itemW);
+                $('.prj').height(itemH);
+                $('.prj').css('background-size', itemW + 'px ' + itemH + 'px');
+                $('.prj').css('-webkit-mask-size', itemW + 'px ' + itemH + 'px');
+                $('.prj-hover').css('background-size', itemW + 'px ' + itemH + 'px');
+                $('.prj-hover').css('-webkit-mask-size', itemW + 'px ' + itemH + 'px');
+
+                $('.prj-wrap-odd').css('width', 3 * (itemW + 1) + 'px');
+                $('.prj-wrap-even').css('width', 4 * (itemW + 1) + 'px');
+                $('.prj-wrap-odd, .prj-wrap-even').css('height', itemH + 'px')
+                                                  .css('margin-top', -71 * ratio + 'px');
+            }
+
+            /*
+             * 非Chrome 版本的 resize 事件
+             * 窗口的 resize 事件：调整第三部分的高度以及每个案例的大小
+             */
+            var resizeSection3Handler_ff = function(){
+                var sectionHeight = $(window).height(),
+                    sectionWidth = $(window).width(),
+                    ratio = Math.min(sectionHeight/920, Math.min(sectionWidth, 976)/976);
+
+                var itemW = Math.floor(228 * ratio);
+                var itemH = Math.floor(228 * ratio);
+                var itemBgW = Math.floor(244 * ratio);
+                var itemBgH = Math.floor(280 * ratio);
+                var itemBorderW = Math.floor(8 * ratio);
+                $('.prj').width(itemW);
+                $('.prj').height(itemH);
+                $('.prj').css('background-size', itemBgW + 'px ' + itemBgH + 'px');
+                $('.prj').css('border-width', itemBorderW);
+                $('.prj-hover').css('background-size', itemBgW + 'px ' + itemBgH + 'px');
+
+                $('.prj-wrap-odd').css('width', 3 * (itemW + itemBorderW + 10) + 'px');
+                $('.prj-wrap-even').css('width', 4 * (itemW + itemBorderW + 10) + 'px');
+                $('.prj-wrap-odd, .prj-wrap-even').css('height', itemH + 'px')
+                        .css('margin-top', -(32 - itemBorderW * 2) * ratio + 'px');
+
+                return ratio;
+            }
+
+            /*
+            * 页面加载完成时候，改变导航到指定的位置
+            */
+            setTimeout(function(){
+                var sectionHeight = $(window).height();
+                var curSectionIndex = Math.ceil($(window).scrollTop()/sectionHeight-0.5);
+                $('#cur-section').transition({
+                    top: 55 + curSectionIndex*32 + 'px'
+                },{
+                    easing: 'ease'
+                });
+            }, 100);
+
+
+            $(document).mousewheel(scrollHandler);
+            $(document).keydown(scrollHandler);
+            resizeSectionHandler();
+            if (navigator.userAgent.indexOf("Chrome") > 0 || navigator.userAgent.indexOf("Safari") > 0)
+                resizeSection3Handler_ch();
+            else
+                resizeSection3Handler_ff();
+
+
+            /*
+             * 左侧导航的 click 事件
+             */
+            $('#nav li').click(function(e){
+                var sectionHeight = $(window).height();
+                s.animateTo(($(e.target).index()-1) * $(window).height(), {
+                    duration: 800,
+                    easing: 'swing',
+                    done: function(){
+                        var curSectionIndex = Math.ceil(s.getScrollTop()/sectionHeight-0.5);
+                        $('#cur-section').transition({
+                            top: 55 + curSectionIndex*32 + 'px'
+                        },{
+                            easing: 'ease'
+                        });
+                    }
+                });
+            });
+
+            /*
+            * 第一部分的向下箭头click事件
+            */
+            $('#down-arrow').click(function(e){
+                s.animateTo($(window).height(), {
+                    duration: 800,
+                    easing: 'swing'
+                });
+            });
+
+            /*
+             * 第三部分“案例”的更多按钮click事件
+             */
+            $('#more').click(function(){
+                var numAdded = 14;
+                if ($('.appended').length < 14)
+                    numAdded = $('.appended').length;
+
+
+                section3num++;
+                $('.appended:lt(' + numAdded + ')').removeClass('appended');
+
+                var section3Height = $(window).height() * section3num;
+                $('#third-section').height(section3Height);
+                $(document.body).height($(document.body).height() + (section3num - 1) * $(window).height());
+                resizeSectionHandler();
+
+                if ($('.appended').length == 0)
+                    $(this).remove();
+            });
+
+            /*
+             * window的resize事件
+             */
+            $(window).resize(function(){
+                resizeSectionHandler(); // 调整整体的高度
+
+                if (navigator.userAgent.indexOf("Chrome") > 0 || navigator.userAgent.indexOf("Safari") > 0)// 调整第三部分的高度
+                    resizeSection3Handler_ch();
+                else
+                    resizeSection3Handler_ff();
+            });
+
+
+
+            /********************************* 第四部分--联系我们动画 *************************************/
+            $(window).scroll(function(){
+                if (s.getScrollTop()>=($(document.body).height()- 1.5 * $(window).height())){
+                    setTimeout(function(){
+                        $('.email').transition({
+                            top: '0px',
+                            opacity: 1.0
+                        },{
+                            duration: 500,
+                            easing: 'ease'
+                        })
+
+                        setTimeout(function(){
+                            $('.qq').transition({
+                                top: '0px',
+                                opacity: 1.0
+                            },{
+                                duration: 500,
+                                easing: 'ease'
+                            })
+                        }, 200);
+                    }, 150);
+                }
+            });
+
+
+            /******************************* sea hover 事件 *****************************/
+            var ap = {
+                intro1:{
+                    'in':{
+                        width: '288px',
+                        height: '434px',
+                        top: '-110px',
+                        left: '250px'
+                    },
+                    'out': {
+                        width: '0px',
+                        height: '0px',
+                        top: '320px',
+                        left: '394px'
+                    },
+                    'isMouseIn': false, // 互斥信号量
+                    'isMouseOut': false
+                },
+                intro2:{
+                    'in':{
+                        width: '288px',
+                        height: '434px',
+                        top: '-224px',
+                        left: '550px'
+                    },
+                    'out': {
+                        width: '0px',
+                        height: '0px',
+                        top: '202px',
+                        left: '694px'
+                    },
+                    'isMouseIn': false,
+                    'isMouseOut': false
+                },
+                intro3:{
+                    'in':{
+                        width: '288px',
+                        height: '434px',
+                        top: '-324px',
+                        right: '397px'
+                    },
+                    'out': {
+                        width: '0px',
+                        height: '0px',
+                        top: '108px',
+                        right: '540px'
+                    },
+                    'isMouseIn': false,
+                    'isMouseOut': false
+                },
+                intro4:{
+                    'in':{
+                        width: '288px',
+                        height: '434px',
+                        top: '-125px',
+                        right: '255px'
+                    },
+                    'out': {
+                        width: '0px',
+                        height: '0px',
+                        top: '306px',
+                        right: '396px'
+                    },
+                    'isMouseIn': false,
+                    'isMouseOut': false
+                }
+            };
+
+            var introMouseover = function(id){
+                ap[id].isMouseIn = true;
+
+                if (!ap[id].isMouseOut)
+                {
+                    $('#' + id).animate({
+                        'backgroundSize': '0%'
+                    },{
+                        duration: 100,
+                        progress: function(){
+                            if (ap[id].isMouseOut)
+                            {
+                                ap[id].isMouseIn = false;
+                                $(this).stop();
+                                $(this).mouseout();
+                            }
+                        },
+                        complete: function(){
+                            $('#' + id + '-hover').animate(ap[id]['in'],{
+                                duration: 500,
+                                progress: function(){
+                                    if (ap[id].isMouseOut)
+                                    {
+                                        ap[id].isMouseIn = false;
+                                        $(this).stop();
+                                        $('#' + id).mouseout();
+                                    }
+                                },
+                                complete: function(){
+                                    $('#' + id + '-hover *').css('visibility', 'visible');
+                                    ap[id].isMouseIn = false;
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+
+            var introMouseout = function(id){
+                ap[id].isMouseOut = true;
+
+                if (!ap[id].isMouseIn)
+                {
+                    $('#' + id + '-hover *').css('visibility', 'hidden');
+                    $('#' + id + '-hover').animate(ap[id].out,{
+                        duration: 500,
+                        progress: function(){
+                            if (ap[id].isMouseIn)
+                            {
+                                ap[id].isMouseOut = false;
+                                $(this).stop();
+                                $('#' + id).mouseover();
+                            }
+                        },
+                        complete: function(){
+                            $('#' + id).animate({
+                                        backgroundSize: '100%'
+                                    },
+                                    {
+                                        duration: 100,
+                                        progress: function(){
+                                            if (ap[id].isMouseIn)
+                                            {
+                                                ap[id].isMouseOut = false;
+                                                $(this).stop();
+                                                $('#' + id).mouseover();
+                                            }
+                                        },
+                                        complete: function(){
+                                            ap[id].isMouseOut = false;
+                                        }
+                                    });
+                        }
+                    });
+                }
+            }
+
+            $('#intro1, #intro2, #intro3, #intro4').on('mouseover', function(){
+                clearInterval(timer);
+                var id = $(this).attr('id');
+                introMouseover(id);
+            });
+
+            $('#intro1, #intro2, #intro3, #intro4').on('mouseout',function(e){
+                clearInterval(timer);
+                var id = $(this).attr('id');
+                if (e.toElement != $('#' + id + '-hover')[0]) {
+                    introMouseout(id);
+                }
+            });
+
+            $('#intro1-hover, #intro2-hover, #intro3-hover, #intro4-hover').on('mouseover', function(e){
+                var id = 'intro' + $(this).attr('id').replace(/[^0-9]/ig,"");
+                if ($(this).width() == 0) {
+                    introMouseover(id);
+                }
+            });
+
+            $('#intro1-hover *, #intro2-hover *, #intro3-hover *, #intro4-hover *').on('mouseover', function(e){
+                e.preventDefault(e);
+                return false;
+            });
+
+            $('#intro1-hover, #intro2-hover, #intro3-hover, #intro4-hover').on('mouseout', function(e){
+                var id = 'intro' + $(this).attr('id').replace(/[^0-9]/ig,"");
+                if (e.toElement != $('#' + id)[0] &&
+                        e.toElement != $('#' + id + '-hover h3')[0] &&
+                        e.toElement != $('#' + id + '-hover .desc')[0] &&
+                        e.toElement != $(this)[0]) {
+                    introMouseout(id);
+                }
+            });
+
+
+            /*
+            *   随机轮播函数
+            */
+            var preId = -1; //前一个轮播的id
+            var showNext = function(){
+
+                var id = Math.ceil(Math.random()*4);
+                if(id === preId)
+                    id = (id===4) ? 1: (id+1);
+                introMouseover('intro'+id);
+
+                setTimeout(function(){
+                    introMouseout('intro'+id);
+                }, 1100);
+
+                preId = id;
+            };
+
+
+            var timer = setInterval(showNext, 2200);
+            showNext();
+
+
+        });
+    </script>
+
+</body>
+</html>
